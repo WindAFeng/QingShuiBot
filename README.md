@@ -1,0 +1,2 @@
+# QingShuiBot_V1
+基于khl.py开发的KOOK社区清云工作室旗下清水MC社区Bot
