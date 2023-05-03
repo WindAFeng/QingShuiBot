@@ -5,7 +5,7 @@ import psutil
 from khl import *  # 调用khl.py所有内容
 
 import CommandObject
-import DataManipulation as dm  # 调用BotPost
+import DataManipulation as dm
 import KookApiRequests
 # 前置工作
 from QS.QingShui.src import EventObject
