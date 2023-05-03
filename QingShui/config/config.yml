@@ -1,0 +1,140 @@
+# 机器人配置文件
+BotInformation: {
+  token: "1/MTYzODY=/iF8WZej2HqHXBoORGU6OIA==",
+}
+# 经验值配置文件
+Experience: {
+  level-0: 0,
+  level-1: 5,
+  level-2: 10,
+  level-3: 20,
+  level-4: 40,
+  level-5: 80,
+  level-6: 160,
+  level-7: 320,
+  level-8: 640,
+  level-9: 1280,
+  level-10: 2560,
+  level-11: 3840,
+  level-12: 5780,
+  level-13: 8670,
+  level-14: 13005,
+  level-15: 19507,
+  level-16: 29260,
+  level-17: 43890,
+  level-18: 65835,
+  level-19: 98752,
+  level-20: 123440,
+  level-21: 154300,
+  level-22: 192875,
+  level-23: 241093,
+  level-24: 301366,
+  level-25: 376707,
+  level-26: 470883,
+  level-27: 588603,
+  level-28: 735753,
+  level-29: 919691,
+  level-30: 1149613,
+  level-31: 1437016,
+  level-32: 1796270,
+  level-33: 2245337,
+  level-34: 2806671,
+  level-35: 3508338,
+  level-36: 4385422,
+  level-37: 5481777,
+  level-38: 6852221,
+  level-39: 8565276,
+  level-40: 10706595,
+}
+# 机器人指令配置文件
+BotCommand: {
+  help: {
+    name: "/help",
+    context: "查询指令功能",
+    parameter: "<页数>",
+    register_command: "help",
+    parameter_number: 1
+  },
+  shout: {
+    name: "/hh ",
+    context: "全服喊话",
+    parameter: "<喊话内容>",
+    register_command: "hh",
+    parameter_number: 1
+  },
+  mainCard: {
+    name: "/QF",
+    context: "打开清风社区功能页面",
+    parameter: "",
+    register_command: "QF",
+    parameter_number: 0
+  },
+  userInformation: {
+    name: "/inf",
+    context: "查询个人信息",
+    parameter: "",
+    register_command: "inf",
+    parameter_number: 0
+  },
+  voiceSet: {
+    name: "/语音设置",
+    context: "开黑语音频道设置",
+    parameter: "<人数>",
+    register_command: "语音设置",
+    parameter_number: 1
+  },
+  serverBind: {
+    name: "/Gbind",
+    context: "绑定游戏服务器查询信息",
+    parameter: "<MC服务器ID> <用户token>",
+    register_command: "Gbind",
+    parameter_number: 2,
+  },
+
+}
+# 关于KOOK服务器配置信息
+KookServerSetting: {
+  # 服务器类
+  guild: {
+    #服务器ID
+    guild_id: "8329917220869199",
+    # 全服喊话被禁止频道（包括语音频道和文字频道）
+    stop_server_say: [
+      { 'name': '🚩 欢迎频道', 'id': '7259581131722418' },
+      { 'name': '📰 社区公告', 'id': '9337880605442554' },
+      { 'name': '🎁 日常活动', 'id': '6117277688797923' },
+      { 'name': '🎮 组队专区', 'id': '4481485386328544' },
+      { 'name': '🎵 听歌房', 'id': '8033059623947590' },
+      { 'name': '创建开黑房间', 'id': '6770879098699231' },
+      { 'name': '机器人实测', 'id': '5141681337930033' },
+      { 'name': '官方直播', 'id': '1457478088054362' },
+    ]
+  },
+  # 频道类
+  channel: {
+    # 文字频道
+    text_channel: {
+      # 组队
+      team_up: {
+        # 组队文字频道
+        team_up_channel_id: "4481485386328544",
+      },
+      robot_system_load: "3645986850919298",
+    },
+    # 语音频道
+    voice_channel: {
+      # 不能组队的语音频道
+      false_team_up_channel: [
+        "1457478088054362",
+        "5294965030848411",
+        "8033059623947590",
+        "6770879098699231" ],
+      # 创建组队房间频道
+      create_team_up_voice_channel: "6770879098699231",
+    }
+  },
+}
+# MC服务器API
+ServerApi: {
+  "28737551": ""
+}
