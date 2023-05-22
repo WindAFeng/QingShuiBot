@@ -1,14 +1,9 @@
 import time
 
+import yaml
+
 
 class Log(object):
-    """
-    需要参数:
-    无
-    类参数:
-    无
-    描述：实现日志输出
-    """
     __debug: str = "[DEBUG]"
     __info: str = "[INFO]"
     __warn: str = "[WARN]"
@@ -75,3 +70,31 @@ class Log(object):
         函数描述:输出fatal日志
         """
         Log._printf(level=cls.__fatal, runningMessage=runningMessage)
+
+
+class Config(object):
+    # 定义类属性
+    config: dict
+    __path: str = "../config/config.yml"  # 配置文件位置
+
+    @classmethod
+    def reload(cls):  # reload类方法
+        try:
+            with open(cls.__path, encoding='utf-8') as cfg:
+                Config.config = yaml.load(cfg, Loader=yaml.FullLoader)  # 读取yaml文件
+                cfg.close()
+            Log.infoLog("Reload Success")
+        except FileNotFoundError:  # 如果找不到文件
+            Log.errorLog("Not Found Config")
+            Log.infoLog("Created Config File")
+            open(cls.__path, 'w')
+
+
+class Parameter:
+
+    @classmethod  # 类方法装饰器
+    def init(cls, args: tuple = None):  # init初始化方法，参数为元组类型，可为空
+        args_list: list = []
+        for point in args:  # 遍历参数元组
+            args_list.append(point)  # 将参数元组中的每个元素添加到args_list列表中
+        return {"length": len(args_list), "args": args_list}  # 返回一个字典，包含args_list的长度和内容

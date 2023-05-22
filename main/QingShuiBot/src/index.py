@@ -1,3 +1,10 @@
+from khl import *
+
+import Command
+import KookRequest
+from PublicFunction import *
+
+
 class QingShuiBot:
     class Variable:
         pass
@@ -14,9 +21,20 @@ class QingShuiBot:
         def __init__(self):
             self.__var = QingShuiBot.Variable
             self.__con = QingShuiBot.Constant
+            self.cfg = Config
+            self.send = KookRequest.Send
 
         def indexRunning(self):
-            pass
+            run_bot = Bot(token=self.cfg.config['Bot']['token'])
+            command_cfg = self.cfg.config['Command']
+            # noinspection PyBroadException
+            try:
+                @run_bot.command(name=command_cfg['help']['reg_name'])
+                async def helps(msg: Message, *args):
+                    await Command.Help.main(msg, args)
+            except:
+                Log.errorLog("Bot Error")
+            run_bot.run()
 
 
 if __name__ == '__main__':
