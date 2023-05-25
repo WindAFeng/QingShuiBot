@@ -32,6 +32,10 @@ class QingShuiBot:
                 @run_bot.command(name=command_cfg['help']['reg_name'])
                 async def helps(msg: Message, *args):
                     await Command.Help.main(msg, args)
+
+                @run_bot.command(name=command_cfg['main']['reg_name'])
+                async def main(msg: Message, *args):
+                    pass
             except:
                 Log.errorLog("Bot Error")
             run_bot.run()
