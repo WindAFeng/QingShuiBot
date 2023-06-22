@@ -68,7 +68,7 @@ class Help:
             content: str = value['content']  # 获取命令内容
             param_number: str = ""  # 参数数量字符串
             for point in value['param_num']:  # 遍历参数数量列表
-                param_number += str(point) + '/'  # 将参数数量拼接到参数数量字符串中
+                param_number += str(point) + ','  # 将参数数量拼接到参数数量字符串中
             cmd_list.append(f">  **{content}**\n`{name}  {param}`\n所需参数数量:{param_number}\n")  # 将命令信息添加到命令列表中
         command_str: str = ""  # 命令字符串
         for command in cmd_list:
@@ -88,3 +88,13 @@ class Help:
 
 class Main:
     imp = ImportantInformation  # 导入重要信息模块
+
+    @classmethod
+    async def main(cls):
+        pass
+
+
+class QueryServer:
+    imp = ImportantInformation  # 导入重要信息模块
+
+    @classmethod

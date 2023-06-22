@@ -27,6 +27,7 @@ class QingShuiBot:
         def indexRunning(self):
             run_bot = Bot(token=self.cfg.config['Bot']['token'])
             command_cfg = self.cfg.config['Command']
+            Log.infoLog("Bot Running")
             # noinspection PyBroadException
             try:
                 @run_bot.command(name=command_cfg['help']['reg_name'])
@@ -36,11 +37,13 @@ class QingShuiBot:
                 @run_bot.command(name=command_cfg['main']['reg_name'])
                 async def main(msg: Message, *args):
                     pass
+
             except:
                 Log.errorLog("Bot Error")
             run_bot.run()
 
 
+runningBot = QingShuiBot().BotRunning()
+
 if __name__ == '__main__':
-    runningBot = QingShuiBot().BotRunning()
     runningBot.indexRunning()
