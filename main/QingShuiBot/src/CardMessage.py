@@ -219,6 +219,58 @@ class CommandCard:
         ]
         return shout_card
 
+    @classmethod
+    def queryServerCard(cls, server_ip: str, server_version: str, online_user: str, max_user: str, delay: str):
+        query_server_card = [
+            {
+                "type": "card",
+                "theme": "none",
+                "size": "lg",
+                "modules": [
+                    {
+                        "type": "header",
+                        "text": {
+                            "type": "plain-text",
+                            "content": "查询成功"
+                        }
+                    },
+                    {
+                        "type": "context",
+                        "elements": [
+                            {
+                                "type": "kmarkdown",
+                                "content": f"**查询IP：**{server_ip}"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "kmarkdown",
+                            "content": f"> **游戏版本:**{server_version}\n**人数:**{online_user}/{max_user}\n"
+                                       f"**延迟:**{delay}ms\n"
+                        }
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "context",
+                        "elements": [
+                            {
+                                "type": "plain-text",
+                                "content": "由清云工作室强力支持"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+        return query_server_card
+
 
 class ErrorCard:
     @classmethod
@@ -254,3 +306,63 @@ class ErrorCard:
             }
         ]
         return param_error
+
+    @classmethod
+    def queryServerErrorCard(cls, server_ip: str):
+        query_server_error_card = [
+            {
+                "type": "card",
+                "theme": "none",
+                "size": "lg",
+                "modules": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "kmarkdown",
+                            "content": "**查询失败**"
+                        }
+                    },
+                    {
+                        "type": "context",
+                        "elements": [
+                            {
+                                "type": "kmarkdown",
+                                "content": "(spl)我们为此感到遗憾 :((spl)"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "context",
+                        "elements": [
+                            {
+                                "type": "kmarkdown",
+                                "content": f"**当前查询服务器:**{server_ip}"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "kmarkdown",
+                            "content": "> 可能因为下面几个问题，可尝试重新查询\n1.网络波动\n2.服务器延迟过大\n3.服务器不存在或IP错误"
+                        }
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "context",
+                        "elements": [
+                            {
+                                "type": "plain-text",
+                                "content": "由清云工作室强力支持"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+        return query_server_error_card

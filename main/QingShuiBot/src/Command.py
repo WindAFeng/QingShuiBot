@@ -1,5 +1,6 @@
 import CardMessage
 import KookRequest
+import Mcstatus as mcs
 from PublicFunction import *
 
 Config.reload()
@@ -98,3 +99,80 @@ class QueryServer:
     imp = ImportantInformation  # 导入重要信息模块
 
     @classmethod
+    async def argument(cls, args: tuple, msg):
+        arg = Parameter.init(args)
+        if 2 >= arg['length'] >= 1:
+            if arg['length'] == 1:
+                return [arg['args'], 1]
+            elif arg['length'] == 2:
+                return [arg['args'], 2]
+        else:
+            await cls.sendParErrorCard(msg=msg)
+
+    @classmethod
+    async def askServer(cls, args: tuple, msg):
+        arg = await cls.argument(args, msg)
+        mcs_server = mcs.McStatus
+        # noinspection PyBroadException
+        try:
+            if arg[1] == 1:
+                data = mcs_server.server(arg[0][0])
+                await cls.sendCard(server_ip=arg[0][0],
+                                   server_version=data.version,
+                                   online_user=data.player_online,
+                                   max_user=data.player_max,
+                                   delay=data.latency,
+                                   msg=msg)
+            elif arg[1] == 2:
+                data = mcs_server.server(arg[0][0], arg[0][1])
+                await cls.sendCard(server_ip=arg[0][0],
+                                   server_version=data.version,
+                                   online_user=data.player_online,
+                                   max_user=data.player_max,
+                                   delay=data.latency,
+                                   msg=msg)
+        except:
+            if arg[1] == 1 or arg[1] == 2:
+                await cls.sendErrorCard(msg, arg[0][0])
+
+    @classmethod
+    async def sendCard(cls, server_ip: str,
+                       server_version: str,
+                       online_user: str,
+                       max_user: str,
+                       delay: str,
+                       msg):
+        card = CardMessage.CommandCard.queryServerCard(server_ip=server_ip,
+                                                       server_version=server_version,
+                                                       online_user=online_user,
+                                                       max_user=max_user,
+                                                       delay=delay)
+        send = KookRequest.Send
+        await send.sendMessage(msg=msg, messageObject=send.cardMessage,
+                               content=card,
+                               temporary=False)
+
+    @classmethod
+    async def sendParErrorCard(cls, msg):
+        card = CardMessage.ErrorCard.paramError()
+        send = KookRequest.Send
+        mes = KookRequest.MessageInformation
+        await mes.messageInformation(msg)
+        await send.sendMessage(msg=msg,
+                               messageObject=send.cardMessage,
+                               content=card,
+                               temporary=True,
+                               magic_id=mes.user_id)
+
+    @classmethod
+    async def sendErrorCard(cls, msg, server_ip: str):
+        card = CardMessage.ErrorCard.queryServerErrorCard(server_ip=server_ip)
+        send = KookRequest.Send
+        await send.sendMessage(msg=msg,
+                               messageObject=send.cardMessage,
+                               content=card,
+                               temporary=False)
+
+    @classmethod
+    async def main(cls, msg, args: tuple):
+        await cls.askServer(args=args, msg=msg)

@@ -61,6 +61,14 @@ class Requests(object):
     class AssetApi:  # 媒体模块
         asset_create: list[str, str] = ["asset/create", "POST"]
 
+    class GuildRoleApi:
+        guild_role_list: list[str, str] = ["guild-role/list", "GET"]
+        guild_role_create: list[str, str] = ["guild-role/create", "POST"]
+        guild_role_update: list[str, str] = ["guild-role/update", "POST"]
+        guild_role_delete: list[str, str] = ["guild-role/delete", "POST"]
+        guild_role_grant: list[str, str] = ["guild-role/grant", "POST"]
+        guild_role_revoke: list[str, str] = ["guild-role/revoke", "POST"]
+
     class InviteApi:
         invite_list: list[str, str] = ["invite/list", "GET"]
         invite_create: list[str, str] = ["invite/create", "POST"]
