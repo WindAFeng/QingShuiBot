@@ -89,12 +89,20 @@ class Config(object):
             Log.infoLog("Created Config File")
             open(cls.__path, 'w')
 
+    @classmethod
+    def searchCommandParameterLengthList(cls, command_name):
+        return cls.config['Command'][command_name]['param_num']
 
-class Parameter:
+
+class Processing:
 
     @classmethod  # 类方法装饰器
-    def init(cls, args: tuple = None):  # init初始化方法，参数为元组类型，可为空
+    def argument(cls, args: tuple = None):  # init初始化方法，参数为元组类型，可为空
         args_list: list = []
         for point in args:  # 遍历参数元组
             args_list.append(point)  # 将参数元组中的每个元素添加到args_list列表中
         return {"length": len(args_list), "args": args_list}  # 返回一个字典，包含args_list的长度和内容
+
+    @classmethod
+    def halfString(cls, string: str = None):
+        return string[:len(string) // 2]

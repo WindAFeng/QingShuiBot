@@ -366,3 +366,81 @@ class ErrorCard:
             }
         ]
         return query_server_error_card
+
+
+class OtherCard:
+    @classmethod
+    def shoutColdCard(cls, cold_time: str):
+        shout_cold_card = [
+            {
+                "type": "card",
+                "theme": "none",
+                "size": "lg",
+                "modules": [
+                    {
+                        "type": "header",
+                        "text": {
+                            "type": "plain-text",
+                            "content": "组队冷却"
+                        }
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "context",
+                        "elements": [
+                            {
+                                "type": "kmarkdown",
+                                "content": f"**剩余冷却时间:**{cold_time}s"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+        return shout_cold_card
+
+    @classmethod
+    def shoutOnCard(cls, room_number: str, player_number: int, leader: str):
+        shout_on_card = [
+            {
+                "type": "card",
+                "theme": "none",
+                "size": "lg",
+                "modules": [
+                    {
+                        "type": "header",
+                        "text": {
+                            "type": "plain-text",
+                            "content": f"{leader}的开黑房间"
+                        }
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "paragraph",
+                            "cols": 3,
+                            "fields": [
+                                {
+                                    "type": "kmarkdown",
+                                    "content": f"**房间号**\n{room_number}"
+                                },
+                                {
+                                    "type": "kmarkdown",
+                                    "content": f"**人数**\n{player_number}"
+                                },
+                                {
+                                    "type": "kmarkdown",
+                                    "content": f"**当前队长**\n{leader}"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+        return shout_on_card

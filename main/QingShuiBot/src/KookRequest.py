@@ -87,6 +87,7 @@ class Requests(object):
     directMessageApi = DirectMessageApi
     userApi = UserApi
     assetApi = AssetApi
+    guildRoleApi = GuildRoleApi
     inviteApi = InviteApi
     blackListApi = BlackListApi
 
@@ -168,3 +169,4 @@ class MessageInformation:  # 定义消息类
         msg_inf.guild_id = msg.ctx.guild.id  # 获取服务器ID
         msg_inf.channel_id = msg.ctx.channel.id  # 获取频道ID
         msg_inf.user_avatar = msg.author.avatar  # 获取用户头像
+        return MessageInformation

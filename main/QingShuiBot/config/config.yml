@@ -1,0 +1,60 @@
+Bot: {
+  token: "1/MTYzODY=/NJUYGtaY+RdCsc3L0XMp4A==",
+}
+Command: {
+  help: {
+    name: "/help",
+    param: "<页数(非必填项)>",
+    content: "获取指令帮助",
+    reg_name: "help",
+    param_num: [ 0, 1 ],
+  },
+  main: {
+    name: "/main",
+    param: "",
+    content: "打开清风社区主页",
+    reg_name: "main",
+    param_num: [ 0 ],
+  },
+  auth: {
+    name: "/auth",
+    param: "<玩家认证代码>",
+    content: "仅供为认证用户使用，已经认证用户使用无效",
+    reg_name: "auth",
+    param_num: [ 0, 1 ]
+  },
+  query_server: {
+    name: "/qserver",
+    param: "<服务器IP> <可选:端口>",
+    content: "查询指定服务器信息",
+    reg_name: "qserver",
+    param_num: [ 0, 1, 2 ]
+  },
+  hypixel: {
+    name: "/hyp",
+    param: "",
+    content: "查询玩家在Hypixel的用户信息",
+    reg_name: "hyp",
+    param_num: [ 0 ]
+  }
+}
+Server: {
+  Guild: {
+    id: "8329917220869199",
+  },
+  Channel: {
+    group: {
+      teamUpGroup: {
+        id: "8204985620621587"
+      }
+    },
+    textChannel: {
+      sendShoutCardChannel: "4481485386328544"
+    },
+    voiceChannel: {
+      create_room_channel_id: "6770879098699231",
+      non_shout_voice_channel_list: [ "6158810291070658", "6770879098699231" ]
+    }
+  },
+
+}

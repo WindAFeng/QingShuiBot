@@ -13,7 +13,7 @@ class ImportantInformation:
     send = KookRequest.Send
     msgInf = KookRequest.MessageInformation
     cards = CardMessage
-    arg = Parameter
+    arg = Processing
 
 
 class Help:
@@ -42,7 +42,7 @@ class Help:
     @classmethod
     async def getNumberBook(cls, args: tuple):
         #  获取数字书籍
-        arg: dict = Help.imp.arg.init(args)  # 初始化参数
+        arg: dict = Help.imp.arg.argument(args)  # 初始化参数
         command_param_num: dict = Help.imp.config['Command']['help']['param_num']  # 获取help命令的参数数量配置
         length = arg['length']  # 获取参数长度
         if length in command_param_num:  # 判断参数长度是否在配置中
@@ -100,7 +100,7 @@ class QueryServer:
 
     @classmethod
     async def argument(cls, args: tuple, msg):
-        arg = Parameter.init(args)
+        arg = Processing.argument(args)
         if 2 >= arg['length'] >= 1:
             if arg['length'] == 1:
                 return [arg['args'], 1]
